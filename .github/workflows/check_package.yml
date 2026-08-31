@@ -1,0 +1,42 @@
+name: Check package
+
+on:
+  workflow_call:
+    inputs:
+      package-name:
+        description: 'The name of the package folder to check.'
+        default: ''
+        required: true
+        type: string
+
+permissions: {}
+
+jobs:
+  get_package_info:
+    name: Get package info for ${{ inputs.package-name }}
+    uses: ./.github/workflows/get_package_info.yml
+    permissions:
+      contents: read
+    with:
+      package-name: ${{ inputs.package-name }}
+  analyze_package:
+    name: Analyze package for ${{ inputs.package-name }}
+    needs: get_package_info
+    uses: ./.github/workflows/analyze_package.yml
+    permissions:
+      contents: read
+    with:
+      package-name: ${{ inputs.package-name }}
+      package-basepath: ${{ github.workspace }}/${{ needs.get_package_info.outputs.package-basepath }}
+      install-extras: ${{ needs.get_package_info.outputs.install-extras }}
+  check_docs:
+    if: ${{ needs.get_package_info.outputs.should-check-docs == 'true' }}
+    name: Check docs for ${{ inputs.package-name }}
+    needs: get_package_info
+    uses: ./.github/workflows/check_docs.yml
+    permissions:
+      contents: read
+    with:
+      package-name: ${{ inputs.package-name }}
+      package-basepath: ${{ github.workspace }}/${{ needs.get_package_info.outputs.package-basepath }}
+
