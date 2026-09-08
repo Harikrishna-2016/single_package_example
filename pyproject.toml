@@ -14,9 +14,9 @@ maintainers = [] # TODO:template
 requires-python = '>=3.10,<4.0'
 
 [project.urls]
-repository = "https://github.com/ni/nitypes-python" # TODO:template
-documentation = "https://nitypes.readthedocs.io/" # TODO:template
-
+repository = "https://github.com/ni/example_package" # TODO: validate this URL
+# documentation = "https://example_package.readthedocs.io/" # TODO enable this once RTD publishing is set up
+changelog = "https://github.com/ni/example_package/blob/main/CHANGELOG.md" # TODO: validate this URL
 
 [build-system]
 requires = ["poetry-core>=2.1.0,<3.0"]
