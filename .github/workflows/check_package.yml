@@ -9,7 +9,8 @@ on:
         required: true
         type: string
 
-permissions: {}
+permissions:
+ contents: read
 
 jobs:
   get_package_info:
