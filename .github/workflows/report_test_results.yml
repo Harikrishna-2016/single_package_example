@@ -4,7 +4,8 @@ on:
   workflow_call:
   workflow_dispatch:
 
-permissions: {}
+permissions: 
+  checks: write
 
 jobs:
   report_test_results:
