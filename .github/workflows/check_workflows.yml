@@ -4,7 +4,9 @@ on:
   workflow_call:
   workflow_dispatch:
 
-permissions: {}
+permissions:
+  contents: read
+  security-events: write
 
 jobs:
   zizmor:
