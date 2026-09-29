@@ -18,12 +18,14 @@ on:
         default: 'true'
         type: string
 
-permissions: {}
+permissions:
+ contents: read
 
 jobs:
   no_op:
-    if: ${{ inputs.check-docs == 'false' }}
-    steps:
+   runs-on: ubuntu-latest
+   if: ${{ inputs.check-docs == 'false' }}
+   steps:
       - name: No-Op
         run: echo "Not checking docs for ${PACKAGE_NAME} because check-docs is set to false."
         env:
