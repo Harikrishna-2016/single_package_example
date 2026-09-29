@@ -21,6 +21,7 @@ on:
 permissions: {}
 
 jobs:
+  runs-on: ubuntu-latest  # GitHub-hosted runner
   no_op:
     if: ${{ inputs.check-docs == 'false' }}
     steps:
