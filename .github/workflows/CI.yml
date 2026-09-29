@@ -12,6 +12,7 @@ permissions:
   contents: read # TODO: remove this when moving the repo to public
 
 jobs:
+ runs-on: ubuntu-latest  # GitHub-hosted runner
   check_workflows:
     name: Check workflows
     uses: ./.github/workflows/check_workflows.yml
